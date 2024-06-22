@@ -1,0 +1,585 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \\documentclass[english]\{scrreprt\}\
+\\usepackage[T1]\{fontenc\}\
+\\usepackage[ansinew]\{inputenc\}\
+\\usepackage\{geometry\}\
+\\usepackage\{amsmath\}\
+\\usepackage[english]\{babel\}\
+\\geometry\{verbose,a4paper,tmargin=3.5cm,bmargin=1.5cm,lmargin=2cm,rmargin=2cm,headheight=1.3cm,headsep=1cm\}\
+\\pagestyle\{headings\}\
+\\setcounter\{secnumdepth\}\{3\}\
+\\setcounter\{tocdepth\}\{3\}\
+\\setlength\{\\parskip\}\{\\medskipamount\}\
+\\setlength\{\\parindent\}\{0pt\}\
+%\\usepackage\{floatflt\}\
+\\usepackage\{graphicx\}\
+\\usepackage\{caption\}\
+\\usepackage\{xcolor\}\
+\\usepackage\{cancel\}\
+\\usepackage\{pdfpages\}\
+\
+\\usepackage\{tikz\}\
+\\usetikzlibrary\{external\}\
+%\\tikzexternalize[prefix=tikz/]\
+\\usetikzlibrary\{shapes,arrows,positioning,calc,fit\}\
+\\tikzset\{red dotted/.style=\{draw=black!50!white, line width=1pt, dash pattern=on 1pt off 4pt on 6pt off 4pt, inner sep=2mm, rectangle, rounded corners\}\}\
+%\\input\{Bilder/tikz_blockdrawing\}\
+\\usetikzlibrary\{plotmarks,shapes,arrows.meta,decorations.markings,patterns,calc,fit\}\
+\\makeatletter\
+\
+\\newcommand\{\\bs\}\{\\boldsymbol\}\
+\\newcommand\{\\idx\}[1]\{_\{\\mathrm\{#1\}\}\}\
+\\newcommand\{\\hig\}[1]\{^\{\\mathrm\{#1\}\}\}\
+\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.\
+\\newcommand\{\\lyxline\}[1][1pt]\{%\
+  \\par\\noindent%\
+  \\rule[.5ex]\{\\linewidth\}\{#1\}\\par\}\
+%% Bold symbol macro for standard LaTeX users\
+\\providecommand\{\\boldsymbol\}[1]\{\\mbox\{\\boldmath $#1$\}\}\
+\
+\\renewcommand\{\\thefigure\}\{\\arabic\{figure\}\}\
+\\renewcommand\{\\thetable\}\{\\arabic\{table\}\}\
+\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.\
+%Use TrueType Fonts\
+\\usepackage\{ae,aecompl\}\
+%***********************************************\
+\\usepackage\{graphicx\}\
+%\\usepackage\{scrpage2\}\
+\\usepackage\{scrlayer-scrpage\}\
+\\pagestyle\{scrheadings\}\
+\\setkomafont\{pagehead\}\{\\sffamily\\bfseries\\small \}\
+\\clearscrheadfoot\
+\
+\\rohead\{University of Stuttgart \\\\[2pt] Institute of Flight Mechanics and Controls  \\\\[8pt] \\normalfont\\sffamily\\footnotesize\{Jun.-Prof. Dr.-Ing. Aamir Ahmad\}\\\\[-37pt] \}\
+\\lohead\{ \\includegraphics[scale=0.4, trim= -0.0cm 0.05cm 0cm 0cm] \{Bilder/ifrlogo_neu.pdf\} \\vspace\{0.05cm\}\} %\{ifrlogo_pre.pdf\}\}\
+\\setheadsepline\{0.4pt\}\
+\
+\\let\\endgraph\\endgraf\
+\
+\\usepackage\{babel\}\
+\\makeatother\
+\
+% Matlab: \\texttt\{ss(A,b,c',d), tf($\\cdot$)\}\
+\
+\\usepackage\{listings\}\
+\\usepackage\{color\} %red, green, blue, yellow, cyan, magenta, black, white\
+\\definecolor\{mygreen\}\{RGB\}\{28,172,0\} % color values Red, Green, Blue\
+\\definecolor\{mylilas\}\{RGB\}\{170,55,241\}\
+\
+\\lstset\{language=Matlab,%\
+	%basicstyle=\\color\{red\},\
+	breaklines=true,%\
+	morekeywords=\{matlab2tikz\},\
+	keywordstyle=\\color\{blue\},%\
+	morekeywords=[2]\{1\}, keywordstyle=[2]\{\\color\{black\}\},\
+	identifierstyle=\\color\{black\},%\
+	stringstyle=\\color\{mylilas\},\
+	commentstyle=\\color\{mygreen\},%\
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space\
+	numbers=left,%\
+	numberstyle=\{\\tiny \\color\{black\}\},% size of the numbers\
+	numbersep=9pt, % this defines how far the numbers are from the text\
+	emph=[1]\{for,end,break\},emphstyle=[1]\\color\{red\}, %some words to emphasise\
+	framexleftmargin=15pt,    \
+\}\
+\\usepackage\{tcolorbox\}\
+\
+%***********************************************\
+\\begin\{document\}\
+\
+\\thispagestyle\{scrheadings\}\
+\\section*\{General Information\}\
+\\textbf\{The completion of this assignment is mandatory for everyone attending the seminar! One assignment per group is sufficient. Please use the provided Latex template for the theoretical tasks!\\\\\\\\\
+Submission date:  Wednesday, 12.06.2024\\\\\
+Send solution to: pascal.goldschmid@ifr.uni-stuttgart.de\\\\\
+\\\\\
+Names of members in group:\} \\\\\
+\\\\\
+\\textit\{Member 1: Mikhailov, Mark\\\\\
+\}\
+\\section*\{Flight robotics seminar assignment I: Derivation of equations of motion\}\
+Physical modelling is the first task which needs to be done before the actual controller design. One needs to understand the dynamical behaviour of a vehicle to derive control laws or to understand the couplings between the environment and the vehicle. Hence, a control design engineer needs to model the system behaviour. This assignment deals with the derivation of the equations of motion (six DOF)\\footnote\{DOF: degrees of freedom\} and the modelling of the acting forces and torques of a multicopter aircraft. The main goal is to get a deeper insight into the system's flight mechanics, to understand how models for controller design can be derived and what simplifications can be made. \\\\\\\\\\noindent\
+\
+\
+\
+\
+%Task 1\
+\\newpage\
+\\section*\{Task 1: Forces and torques\}\
+The first task deals with the forces and torques acting on a multicopter aircraft. \
+\\subsection*\{1.1: Forces and torques acting on a copter\}\
+\\begin\{itemize\}\
+    \\item [a)] Name all relevant forces and torques that act on a multicopter aircraft. Name the coordinate system where they are expressed in the simplest form and write it in  vector notation \\\\e.g $\{_B\}\\boldsymbol\{F\}_\{1\} \\rightarrow$ force 1 expressed in B-coordinates.\\\\\
+\\end\{itemize\}\
+ \
+        \\textcolor\{teal\}\{\
+        Solution: \\\\\
+        \\begin\{align*\}\
+        \\text\{Thrust force:\}\\\\\
+            \{_B\}\{F\}_\{Thrust\}&=\
+            \\left(\\begin\{array\}\{c\}\
+                  0 \\\\\
+                  0 \\\\\
+                  \{_B\}\{F\}_\{Thrust\} \\\\\
+            \\end\{array\}\\right)\\\\ \\\\\
+            \\text\{Gravitational force:\}\\\\\
+            \{_g\}\{F\}_\{Grav\}&=\
+            \\left(\\begin\{array\}\{c\}\
+                  0 \\\\\
+                  0 \\\\\
+                  -m|g| \\\\\
+            \\end\{array\}\\right)\\\\ \\\\\
+            \\text\{Lifting force:\}\\\\\
+            \{_g\}\{F\}_\{Lift\}&=\
+            \\left(\\begin\{array\}\{c\}\
+                  0 \\\\\
+                  0 \\\\\
+                  \{_B\}\{F\}_\{Lift\} \\\\\
+            \\end\{array\}\\right)\\\\ \\\\\
+            \\text\{Air resistance force:\}\\\\\
+            \{_B\}\{F\}_\{Drag\}&=\\left(\\begin\{array\}\{c\}\
+                  k_\{Drag\}\\cdot \{_B\}\{v^2\}_x\\\\\
+                  k_\{Drag\}\\cdot \{_B\}\{v^2\}_y\\\\\
+                  k_\{Drag\}\\cdot \{_B\}\{v^2\}_z\\\\\
+            \\end\{array\}\\right)\\\\ \\\\\
+            \\text\{Torques:\}\\\\\
+            \{_B\}\{M\}&=\
+            \\left(\\begin\{array\}\{c\}\
+                  \\tau_\{x\} \\\\\
+                  \\tau_\{y\} \\\\\
+                  \\tau_\{z\} \\\\\
+            \\end\{array\}\\right)=\\left(\\begin\{array\}\{c\}\
+                  L \\\\\
+                  M \\\\\
+                  N \\\\\
+            \\end\{array\}\\right)\\\\ \\\\\
+            \\text\{Air resistance torques:\}\\\\\
+            \{_B\}\{M\}_\{Drag\}&=-\\left(\\begin\{array\}\{c\}\
+                  k_\{Drag\}\\cdot \{_B\}\{w\}_x\\\\\
+                  k_\{Drag\}\\cdot \{_B\}\{w\}_y\\\\\
+                  k_\{Drag\}\\cdot \{_B\}\{w\}_z\\\\\
+            \\end\{array\}\\right)\
+        \\end\{align*\}\
+    \\newpage\
+In addition, one could calculate the so-called torque effect. This effect is based on Newton's 3rd law, namely "Actio Reactio". Since a torque is generated in the direction of rotation during the rotation of the propeller, a torque is also generated in the opposite direction. In a simplified way, this can be observed with an aircraft propeller:\
+        \\begin\{center\}\
+            \\includegraphics[scale=0.5]\{Torque Effekt Flugzeug.pdf\}\
+        \\end\{center\}\
+        However, these torques are extinguished because the propellers in the X-projection have different directions of rotation on opposite sides. As a result, the torques also act in opposite directions. This is what it would look like with a quadracopter:\
+        \\begin\{center\}\
+            \\includegraphics[scale=0.5]\{Latex_template_EquationsOfMotion_updated/Torque Effekt Quadro.pdf\}\
+        \\end\{center\}\}\
+        \\newpage\
+\\subsection*\{1.2: Modelling of thrust force and torque\}\
+\\begin\{itemize\}\
+    \\item [a)] Draw a sketch with all acting forces and torques. Mind the coordinate system and direction of rotation of the torques!\\\\\
+\
+    \\textcolor\{teal\}\{Solution:\}\
+        \\begin\{center\}\
+            \\includegraphics[scale=0.6]\{Latex_template_EquationsOfMotion_updated/Sktch.pdf\}\
+        \\end\{center\}\
+\\newpage\
+    \\item [b)] How is the thrust force magnitude of one actuator (i.e. motor with propeller) calculated in general? Hint 1: A propeller can be considered as an aerodynamic surface for which the lift can be calculated using  $F_A = \\rho/2 \\cdot v^2 \\cdot C_a \\cdot A$. Think of how the velocity $v$ and the reference aera $A$ can be expressed in case of a rotating propeller. Mind the physical units and name all variables. Hint 2: Keep it simple (no need for integrals).\\\\\
+\
+    \\textcolor\{teal\}\{\
+        Solution:\\\\\
+            \\begin\{align*\}\
+                F_\{A\}&=\\frac\{1\}\{2\}\\rho v^2 C_\{a\}A \\\\ \\\\\
+                v = w&r;  \\hspace\{1cm\} A = \\pi r^2 \\hspace\{1cm\} \\Rightarrow\\\\ \\\\\
+                F_\{A\}&=\\frac\{1\}\{2\}\\rho (wr)^2 C_\{a\}\\pi r^2  \\hspace\{1cm\} \\\\ \\\\\
+                F_\{A\}&=\\frac\{1\}\{2\}\\rho w^2 C_\{a\}\\pi r^4\\\\\
+            \\end\{align*\}\
+            The total lift force is the sum of the forces of all propellers. It follows from this:\
+            \\begin\{align*\}\
+                \{_B\}F_\{Lift\}=\\sum_\{i=0\}^n\{F\}_\{A,i\}\
+            \\end\{align*\}\
+            Variables:\\\\\
+            \\begin\{enumerate\}\
+                \\item[-]$\\rho$: Air density;\\\\\
+                \\item[-]$w$: Angular velocity;\\\\\
+                \\item[-]$C_a$: Lift coefficient of propeller;\\\\\
+                \\item[-]$r$: Radius of Propeller;\\\\\
+            \\end\{enumerate\}\}\
+\
+    \\item [c)] What is/are the problem(s) with the equation from b)? How could this be solved? Hint: Thrust measurement\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\
+            \\begin\{enumerate\}\
+                \\item\{Problems:\}\
+                    \\begin\{enumerate\}\
+                        \\item[-] The expression $v = wr$ is a simplified assumption of the actual speed, since it depends on air flows and other factors;\
+                        \\item[-] $C_\{a\}$ is assumed to be constant, which is not always the case in reality. It may depend on the flow velocity, angle of attack or propeller blades;\
+                        \\item[-] The flow is not uniform. Turbulence can occur, which affects the thrust force;\
+                        \\item[-] Propeller material is considered ideal. Deformations of the sheets are not taken into account\
+                        \\item[-] Friction and eddy currents in the propeller;\
+                    \\end\{enumerate\}\
+                    \\newpage\
+                \\item\{Solutions:\}\
+                \\begin\{enumerate\}\
+                        \\item[-] Direct measurement of the thrust force on the propeller;\
+                        \\item[-] Calibration of the sensors for a more accurate and precise measurement data acquisition;\
+                        \\item[-] Tests under different conditions. This refers to the rotational speeds of the propeller, air resistance or temperatures;\
+                        \\item[-] Simulations of the complex flow phenomena for better understanding and modeling;\
+                    \\end\{enumerate\}\
+            \\end\{enumerate\}\}\
+        \\vspace\{0.5cm\}\
+\
+	\\item [d)] How is the total thrust force magnitude acting on the copter calculated?\\\\ \
+\
+        \\textcolor\{teal\}\{\
+        Solution:\\\\\
+            \\\\\
+            $F_\{ges\}=\\sum_\{i=1\}^n\{F\}_\{Thrust,i\}$\\\\ \\\\\
+            $F_\{ges\}$: Total thrust force\\\\ \\\\\
+            $F_\{Thrust\}$: Thrust force, where $n$ responds to the number of actuators;\}\\\\\
+\
+    \\item [e)] How does the thrust vector looks like in a body-fixed coordinate system as depicted in figure \\ref\{fig: relKin\}.\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\\\\\
+        \\\\\
+        The thrust force vector acts orthogonally to the propeller surface.\}\\\\\
+\
+        \\begin\{center\}\
+            \\includegraphics[scale=0.45]\{Latex_template_EquationsOfMotion_updated/Sketch2.pdf\}\
+        \\end\{center\}\
+        \\newpage\
+    \\item [f)] Derive an equation to obtain the torque vector generated by \\textit\{one\} actuator. Name the different components.\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\\\\\
+        \\\\\
+        The following applies to the torque: $\\tau_\{ges\}=r \\times \{F\}_\{Thrust\}$\
+         \\begin\{enumerate\}\
+                \\item[-]\{Quantities:\}\
+                    \\begin\{enumerate\}\
+                        \\item[1.] Direction: right-hand-rule;\
+                        \\item[2.] Absolute value: $|\\tau_\{ges\}|=|r| \\cdot |\{F\}_\{Thrust\}|\\cdot sin(\\theta)$;\
+                    \\end\{enumerate\}\
+            \\end\{enumerate\}\}\
+        \\vspace\{0.5cm\}\
+ \
+    \\item [g)] How is the total torque vector calculated?  Hint: Mind the direction of rotation of the different actuators!\\\\\
+\
+        \\textcolor\{teal\}\{\
+            Solution:\\\\\
+            \\\\\
+            The same as for the total thrust force, the torque is calculated:\\\\ \\\\\
+            $\\tau_\{ges\}=\\sum\\nolimits_\{i=1\}^n\{\\tau\}_\{i\}$\}\
+		\
+\\end\{itemize\}\
+\
+\\newpage\
+\\section*\{Task 2: Translational equations of motion\}\
+The second task deals with the derivation of the translational equations of motion.  The three translational first order differential equations describe the motion of the center of mass of a vehicle. Here, only rigid bodies are assumed.\
+\\subsection*\{2.1: Relative kinematics\}\
+\\begin\{itemize\}\
+    \\item[a)] Derive the translational equations of motion related and expressed to an earth fixed frame of reference $\{_E\}\\boldsymbol\{\\ddot\{r\}\} = \{_E\}\\boldsymbol\{a\} $ . Mind the sketch and nomenclature in the appendix! Starting point: $\{_I\}\\boldsymbol\{r\}_\{IB\} = \{_I\}\\boldsymbol\{T\}_E \{_E\}\\boldsymbol\{r\}_\{EB\}$ .\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\\\\\
+            \\begin\{align*\}    \
+                &\{_I\}\\boldsymbol\{r\}_\{IB\} = \{_I\}\\boldsymbol\{T\}_E \\cdot \{_E\}\\boldsymbol\{r\}_\{EB\}\\\\ \\\\\
+                1.\\hspace\{0.25cm\}&\{_I\}\\boldsymbol\{\\dot\{r\}\}_\{IB\} = \{_I\}\\boldsymbol\{v\}_\{IB\}\\\\ \\\\\
+                2.\\hspace\{0.25cm\}&\{_I\}\\boldsymbol\{\\ddot\{r\}\}_\{IB\} = \{_I\}\\boldsymbol\{a\}_\{IB\}\\\\ \\\\\
+                3.\\hspace\{0.25cm\}&\\frac\{d\}\{dt\}(\{_I\}\\boldsymbol\{T\}_E \\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}) = \{_I\}\\boldsymbol\{\\dot\{T\}\}_E \\cdot \{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{\\dot\{r\}\}_\{EB\} \\cdot \{_I\}\\boldsymbol\{T\}_E \\hspace\{1cm\}\\\\ \\\\\
+                4.\\hspace\{0.25cm\}&\\frac\{d\}\{dt\}(\{_I\}\\boldsymbol\{T\}_E\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{v\}_\{EB\}))=\{_I\}\\boldsymbol\{\\dot\{T\}\}_E \\cdot (\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{v\}_\{EB\}) + \{_I\}\\boldsymbol\{T\}_E \\cdot \\frac\{d\}\{dt\}(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{v\}_\{EB\})\
+            \\end\{align*\}\
+            \\begin\{align*\}    \
+               \{_I\}\\boldsymbol\{v\}_\{IB\}&=\{_I\}\\boldsymbol\{\\dot\{T\}\}_E \\cdot \{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{\\dot\{r\}\}_\{EB\} \\cdot \{_I\}\\boldsymbol\{T\}_E\\\\ \\\\\
+               \{_I\}\\boldsymbol\{v\}_\{IB\}&=(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_I\}\\boldsymbol\{T\}_E) \\cdot \{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{v\}_\{EB\} \\cdot \{_I\}\\boldsymbol\{T\}_E\\\\ \\\\\
+               \{_I\}\\boldsymbol\{v\}_\{IB\}&=\{_I\}\\boldsymbol\{T\}_E\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}) + \{_E\}\\boldsymbol\{v\}_\{EB\} \\cdot \{_I\}\\boldsymbol\{T\}_E\\\\ \\\\\
+               \{_I\}\\boldsymbol\{v\}_\{IB\}&=\{_I\}\\boldsymbol\{T\}_E\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{v\}_\{EB\})\\\\\
+            \\end\{align*\}\
+        This was used to establish the velocity equation. Now it is also possible to set up the acceleration equation:\
+            \\begin\{align*\}    \
+               \{_I\}\\boldsymbol\{a\}_\{IB\}&=(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_I\}\\boldsymbol\{T\}_E) (\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{v\}_\{EB\}) + \{_I\}\\boldsymbol\{T\}_E \\cdot \\frac\{d\}\{dt\}(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\} + \{_E\}\\boldsymbol\{v\}_\{EB\})\\\\ \\\\\
+               \{_I\}\\boldsymbol\{a\}_\{IB\}&=\{_I\}\\boldsymbol\{T\}_E\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}_E\\times\{_E\}\\boldsymbol\{r\}_\{EB\}) + \{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} + \{_E\}\\boldsymbol\{v\}_\{EB\}) + \\\\ &+ \{_I\}\\boldsymbol\{T\}_E \\cdot (\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\} + \{_I\}\\boldsymbol\{w\}^\{IE\} \\cdot (\{_I\}\\boldsymbol\{w\}^\{IE\} \\cdot\{_E\}\\boldsymbol\{v\}_\{EB\})+\{_E\}\\boldsymbol\{a\}_\{EB\})\\\\ \\\\\
+               \{_I\}\\boldsymbol\{a\}_\{IB\}&=\{_I\}\\boldsymbol\{T\}_E\\cdot(\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}+\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}) + 2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\} + \{_E\}\\boldsymbol\{a\}_\{EB\})\
+            \\end\{align*\}\}\
+\
+	\\item[b)] Name all terms.\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\
+            \\begin\{enumerate\}\
+                \\item[-]$\{_I\}\\boldsymbol\{a\}_\{IB\}$: Acceleration of the body B relative to inertial system I;\\\\\
+                \\item[-]$\{_E\}\\boldsymbol\{a\}_\{EB\}$: Acceleration of the body B relative to earth-fixed system E;\\\\\
+                \\item[-]$\{_E\}\\boldsymbol\{v\}_\{EB\}$: Velocity of the body B relative to earth-fixed system E;\\\\\
+                \\item[-]$\{_I\}\\boldsymbol\{v\}_\{IB\}$: Velocity of the body B relative to inertial system I;\\\\\
+                \\item[-]$\{_E\}\\boldsymbol\{r\}_\{EB\}$: Position vector of the body B relative to earth-fixed system E;\\\\\
+                \\item[-]$\{_I\}\\boldsymbol\{T\}_E$: Transformation matrix from earth-fixed system E to inertial system I;\\\\\
+                \\item[-]$\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}$: Angular velocity of the body B relative to inertial system I;\\\\\
+                \\item[-]$\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}$: Angular acceleration of the body B relative to inertial system I;\\\\\
+            \\end\{enumerate\}\}\
+\
+\\end\{itemize\}\
+\\subsection*\{2.2: Newton's second law\}\
+\\begin\{itemize\}\
+    \\item[a)] Doubtless, Newton's law must be referred to an inertial frame of reference and reads:\\\\ $\\sum \{_I\}\\boldsymbol\{F\} = m \{_I\}\\boldsymbol\{a\} (= m \{_I\}\\boldsymbol\{T\}_E \{_E\}\\boldsymbol\{a\} )$. Insert your result from task 1.1 a) and derive an equation for the relative acceleration and express the solution in the earth fixed coordinate system. How are the terms called now? Leave the term $\\sum \{_I\}\\boldsymbol\{F\}$ as it is for the moment.\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\\\\\
+            \\begin\{align*\}\
+                \\sum\\nolimits\{_I\}\{F\}&=m\\cdot\{_I\}\{a\}(=m\\cdot\{_I\}\{T\}_\{E\}\\cdot\{_E\}\{a\})\\\\ \\\\\
+                \\sum\{_I\}\{F\}&=m\\cdot\{_I\}\{a\}\
+            \\end\{align*\}\}\
+            \
+            \\textcolor\{teal\}\{\
+            From 2.1.a):\
+            \\begin\{align*\}\
+                \{_I\}\\boldsymbol\{a\}_\{IB\}&=\{_I\}\\boldsymbol\{T\}_E\\cdot(\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}+\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}) + 2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\} + \{_E\}\\boldsymbol\{a\}_\{EB\}) \\Rightarrow \\\\ \\\\\
+                \\sum\{_I\}\{F\}&=m\\cdot\{_I\}\\boldsymbol\{T\}_E\\cdot(\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}+\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}) + 2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\} + \{_E\}\\boldsymbol\{a\}_\{EB\})\\\\\
+            \\end\{align*\}\
+            For earth-fixed system E, multiplication by the inverse matrix $\{_I\}\\boldsymbol\{T\}_\{E\}^\{-1\}$ is necessary. Since the inverse is orthogonal, the following applies:\
+            \\begin\{center\}\
+                $\{_I\}\\boldsymbol\{T\}_\{E\}^\{-1\}=\{_I\}\\boldsymbol\{T\}_\{E\}^\{T\}=\{_E\}\\boldsymbol\{T\}_\{I\}$\\\\\
+            \\end\{center\}\
+            \\begin\{align*\}\
+                \{_E\}\\boldsymbol\{T\}_\{I\}\\cdot\\sum\{_I\}\{F\}&=m\\cdot\{_E\}\\boldsymbol\{T\}_\{I\}\\cdot\{_I\}\\boldsymbol\{T\}_E\\cdot(\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}+\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{w\}_E\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}) + 2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\} + \{_E\}\\boldsymbol\{a\}_\{EB\})\\\\ \\\\\
+                \{_E\}\\boldsymbol\{T\}_\{I\}\\cdot\\sum\{_I\}\{F\}&=m\\cdot I \\cdot(\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}+\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}) + 2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\} + \{_E\}\\boldsymbol\{a\}_\{EB\})\\\\ \\\\\
+                \\sum\{_E\}\{F\}&=m\\cdot(\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}+\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}) + 2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\} + \{_E\}\\boldsymbol\{a\}_\{EB\})\\\\ \
+            \\end\{align*\}\
+            The following equations mean:\\\\\
+            \\begin\{enumerate\}\
+                    \\item[-]$m$:\\hspace\{4.05cm\} Mass of the body;\\\\\
+                    \\item[-]$\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}$:\\hspace\{2.3cm\}  Inertial acceleration;\\\\\
+                    \\item[-]$\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\})$:\\hspace\{0.7cm\}  Centrifugal acceleration;\\\\\
+                    \\item[-]$2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\}$:\\hspace\{2.05cm\}  Acceleration of the Earth's rotation (Coriolis);\\\\\
+                    \\item[-]$\{_E\}\\boldsymbol\{a\}_\{EB\}$:\\hspace\{3.45cm\} Relative acceleration of the body B;\\\\\
+                \\end\{enumerate\}\}\
+\
+    \\item [b)] Which simplifications can be made for the flight robotics seminar? Hint: Mind our flight scenario.\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\\\\\
+            \\begin\{enumerate\}\
+                \\item[1.]$\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}=0$:\\hspace\{2cm\} Earth rotation does not change significantly;\\\\\
+                \\item[2.]$2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\}=0$:\\hspace\{1.75cm\} Flight speed is low in relation to Earth rotation speed;\\\\\
+                \\item[3.]$\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\})=0$:\\hspace\{0.45cm\} Flight altitude is too low for the effectiveness of the Earth's centrifugal force;\\\\\
+            \\end\{enumerate\}\}\
+            \\textcolor\{teal\}\{\
+            Simplified version of the equation:\\\\\
+            \\begin\{center\}\
+                $\\sum\{_E\}F=m\\cdot(\\cancel\{\{_I\}\\boldsymbol\{\\tilde\{\\alpha\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\}\}+\\cancel\{\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot(\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\}\\cdot\{_E\}\\boldsymbol\{r\}_\{EB\})\} + \\cancel\{2\{_I\}\\boldsymbol\{\\tilde\{w\}\}^\{IE\} \\cdot \{_E\}\\boldsymbol\{v\}_\{EB\}\} + \{_E\}\\boldsymbol\{a\}_\{EB\})$\\\\ \\vspace\{0.5cm\}\
+                $\{_E\}\{F\}=m\\cdot\{_E\}\{a\}_\{EB\}$\
+            \\end\{center\}\}\
+            \\vspace\{0.5cm\}\
+\
+    \\item [c)] Now add the forces from task 1 to obtain the full translational equations of motion. If necessary, add the corresponding transformation matrices!\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\
+            \\begin\{align*\}\
+                \\sum\{_E\}\{F\}=\{_E\}(T_E \\cdot F_\{Grav\}+F_\{Thrust\}+F_\{Drag\}+T_E \\cdot F_\{Lift\})=m\\cdot\{_E\}\{a\}_\{EB\}\
+            \\end\{align*\}\}\
+		\
+\\end\{itemize\}\
+\\newpage\
+\\section*\{Task 3: Rotational equations of motion\}\
+The third task deals with the derivation of last three degrees of freedom, the rotational equations of motion. This three  first order differential equations describe the attitude of a vehicle. Again, only rigid bodies are assumed.\
+\\subsection*\{3.1: Relative kinematics\}\
+\\begin\{itemize\}\
+    \\item [a)] Derive the rotational equations of motion expressed and related in the body fixed frame B. \
+Starting point : $ \{_I\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\} = \{_I\}\\boldsymbol\{L\}$\
+% Enter answer here\
+\
+ The symbol $\{_I\}\\boldsymbol\{L\}$ denotes the angular momentum of the copter in inertial coordinates. Hint: The sum of moments (in inertial coordinates) acting on the copter can be expressed with  $\\sum \{_I\}\\boldsymbol\{\\tau\}_\{IB\}$. For now, the composition of the sum of moments does not need to be known in more detail.\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution: \
+            \\begin\{center\}\
+                $\{_I\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\} = \{_I\}\\boldsymbol\{L\}$\\\\ \\vspace\{0.4cm\}\
+                $\\sum \{_I\}\\boldsymbol\{\\tau\}_\{IB\}=\\frac\{d\\boldsymbol\{\{_I\}L\}\}\{dt\}$\
+            \\end\{center\}\
+            \\vspace\{0.3cm\}\
+            In the body-fixed frame B we have to take into account the time derivative of the angular momentum. It should be noted that the time derivative of a vector in a rotating reference system differs from the derivative in an inertial system. The time derivative of a vector v in the body-fixed frame B is given by:\\\\ \
+            \\begin\{center\}\
+                $\{_I\}\{(\\frac\{d\{v\}\}\{dt\})\}=\{_B\}\{(\\frac\{d\{v\}\}\{dt\})\}+\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\\times \\boldsymbol\{v\}$\\\\ \\vspace\{0.4cm\}\
+                $\\frac\{d\{\{_I\}\\boldsymbol\{L\}\}\}\{dt\}=\{_B\}(\\frac\{d\{\{_I\}\\boldsymbol\{L\}\}\}\{dt\})+\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\\times\{_I\}\\boldsymbol\{\{L\}\}$\\\\\
+            \\end\{center\} \\vspace\{0.4cm\}\
+                The angular momentum in the body-fixed frame is:\\\\\
+            \\begin\{center\}\
+                $\{_B\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\} = \{_B\}\\boldsymbol\{L\}$\\\\ \\vspace\{0.4cm\}\
+                $\{_B\}(\\frac\{d\\boldsymbol\{\{_I\}L\}\}\{dt\})=\{_B\}\\boldsymbol\{I\}\\cdot \{_B\}(\\frac\{d\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\}\{dt\})$\\\\ \\vspace\{0.4cm\}\
+                $\\sum \{_I\}\\boldsymbol\{\\tau\}_\{IB\}=\{_B\}\\boldsymbol\{I\}\\cdot \{_B\}(\\frac\{d\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\}\{dt\})+\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\\times(\{_B\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\})$\\\\ \\vspace\{0.4cm\}\
+                $\{_B\}\\boldsymbol\{I\}\\cdot \{_B\}(\\frac\{d\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\}\{dt\})=\\sum \{_I\}\\boldsymbol\{\\tau\}_\{IB\}-\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\\times(\{_B\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\})$\
+            \\end\{center\}\
+            \\vspace\{0.4cm\}\
+            Where the following equations are:\\\\\
+            \\begin\{enumerate\}\
+                    \\item[-]$\{_B\}\\boldsymbol\{I\}$:\\hspace\{3.0cm\} Inertia (or inertia tensor) in the body-fixed reference system;\\\\\
+                    \\item[-]$\{_B\}(\\frac\{d\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\}\{dt\})$:\\hspace\{1.9cm\}  Temporal change of the angular momentum in the body-fixed system;\\\\\
+                    \\item[-]$\\sum \{_I\}\\boldsymbol\{\\tau\}_\{IB\}$:\\hspace\{2.115cm\}  The sum of the torques;\\\\\
+                    \\item[-]$\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\\times(\{_B\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\})$:\\hspace\{0.35cm\} Gyroscopic effects;\\\\\
+                \\end\{enumerate\}\}\
+            \\vspace\{0.4cm\}\
+            \
+    \\item [b)] Why is it beneficial to express and relate the rotational equations of motion in the body-fixed frame B?\\\\ \\\\\
+        \\textcolor\{teal\}\{\
+        Solution:\\\\\
+            \\begin\{enumerate\}\
+                \\item[1.]\\textbf\{Simple description of the rotation movement:\} \\\\\
+                Movements of the flying object can be described directly in relation to the\\\\\
+                coordinate system;\
+                \\item[2.]\\textbf\{Reference system:\}\\\\\
+                Coordinate system is at the same time a flying object, which facilitates analysis and modeling;\
+                \\item[3.]\\textbf\{Sensors:\}\\\\Calibration of sensors requires fewer conversions;\
+                \\item[4.]\\textbf\{Complexity:\}\\\\Representation of rotational movements in body-fixed coordinate system are clearer than in the inertial system, which simplifies the modeling of the control;\\\\\
+            \\end\{enumerate\}\}\
+		\
+    \\item [c)] Which simplifications can be made? Hint: Inertia tensor.\\\\\
+\
+        \\textcolor\{teal\}\{\
+        Solution:\\\\\
+            \\begin\{enumerate\}\
+                \\item[1.]Inertia tensor can be represented as a diagonal matrix:\\\\\
+                $$ I = \\left[ \\begin\{matrix\} I_\{xx\} & 0 & 0 \\\\ 0 & I_\{yy\} & 0 \\\\ 0 & 0 & I_\{zz\} \\end\{matrix\} \\right]; $$\
+                \\item[2.]The flying object is a rigid body, which means that the moments of inertia can be taken into account as constant;\
+                \\item[3.]If the flying object is symmetrical, then the moments of inertia can be neglected;\\\\\
+                \\item[4.]The gyroscopic effects can be neglected, since in our case they are not significant;\\\\\
+            \\end\{enumerate\}\}\
+            \
+    \\item [d)] Now add the torques from task 1 to obtain the full rotational equations of motion. If necessary add the corresponding transformation matrices!\\\\\
+\
+    \\textcolor\{teal\}\{\
+    Solution:\\\\ \\\\\
+    From task 1 we have the following torques:\\\\\
+        \\begin\{align*\}\
+            \\text\{Torques:\}\\\\\
+                    \{_B\}\{M\}&=\{_B\}\{\\tau\}=\
+                    \\left(\\begin\{array\}\{c\}\
+                          \\tau_\{x\} \\\\\
+                          \\tau_\{y\} \\\\\
+                          \\tau_\{z\} \\\\\
+                    \\end\{array\}\\right)=\\left(\\begin\{array\}\{c\}\
+                          L \\\\\
+                          M \\\\\
+                          N \\\\\
+                    \\end\{array\}\\right)\\\\ \\\\\
+        \\end\{align*\}\
+        \\begin\{align*\}\
+            \\text\{Air resistance torques:\}\\\\ \\\\\
+            \{_B\}\{M\}_\{Drag\}&=-\\left(\\begin\{array\}\{c\}\
+                  k_\{Drag\}\\cdot \{_B\}\{w\}_x\\\\\
+                  k_\{Drag\}\\cdot \{_B\}\{w\}_y\\\\\
+                  k_\{Drag\}\\cdot \{_B\}\{w\}_z\\\\\
+            \\end\{array\}\\right)\
+        \\end\{align*\}\
+The sum of the torques can be described as:\\\\\
+        \\begin\{align*\}\
+            \\sum \{_I\}\\boldsymbol\{\\tau\}_\{IB\}=\
+            \\left(\\begin\{array\}\{c\}\
+                  \\tau_\{x\} \\\\\
+                  \\tau_\{y\} \\\\\
+                  \\tau_\{z\} \\\\\
+            \\end\{array\}\\right)+\\left(\\begin\{array\}\{c\}\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_x\\\\\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_y\\\\\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_z\\\\\
+            \\end\{array\}\\right)=\\left(\\begin\{array\}\{c\}\
+                  L \\\\\
+                  M \\\\\
+                  N \\\\\
+            \\end\{array\}\\right)+\\left(\\begin\{array\}\{c\}\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_x\\\\\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_y\\\\\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_z\\\\\
+            \\end\{array\}\\right)\\\\\
+        \\end\{align*\}\
+The change in the angular velocity over time describes the angular acceleration, which is also $\\alpha$. With this one can rewrite the equation. If the equation from task 3a) is used, the following equation results:\\\\\
+        \\begin\{align*\}\
+            \{_B\}\\boldsymbol\{I\}\\cdot \{_B\}\\boldsymbol\{\\alpha\}&=\\left(\\begin\{array\}\{c\}\
+                  \\tau_\{x\} \\\\\
+                  \\tau_\{y\} \\\\\
+                  \\tau_\{z\} \\\\\
+            \\end\{array\}\\right)+\\left(\\begin\{array\}\{c\}\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_x\\\\\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_y\\\\\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_z\\\\\
+            \\end\{array\}\\right)-\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\\times(\{_B\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\})\\\\\
+            \{_B\}\\boldsymbol\{I\}\\cdot \{_B\}\\boldsymbol\{\\alpha\}&=\\left(\\begin\{array\}\{c\}\
+                  L \\\\\
+                  M \\\\\
+                  N \\\\\
+            \\end\{array\}\\right)+\\left(\\begin\{array\}\{c\}\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_x\\\\\
+                  -k_\{Drag\}\\cdot \{_B\}\{w\}_y\\\\\
+                  - k_\{Drag\}\\cdot \{_B\}\{w\}_z\\\\\
+            \\end\{array\}\\right)-\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\\times(\{_B\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\})\\\\\
+            \{_B\}\\boldsymbol\{I\}\\cdot \{_B\}\\boldsymbol\{\\alpha\}&=\\left(\\begin\{array\}\{c\}\
+                  L - k_\{Drag\}\\cdot \{_B\}\{w\}_x\\\\\
+                  M - k_\{Drag\}\\cdot \{_B\}\{w\}_y\\\\\
+                  N - k_\{Drag\}\\cdot \{_B\}\{w\}_z\\\\\
+            \\end\{array\}\\right)-\{_I\}\\boldsymbol\{\\omega\}_\{IB\}\\times(\{_B\}\\boldsymbol\{I\}\\cdot\{_I\}\\boldsymbol\{\\omega\}_\{IB\})\\\\\
+        \\end\{align*\}\
+        The simplification of the gyroscopic effects described in 3c) can be applied to the equation, so that the equation shortens to the following expression:\\\\\
+        \\begin\{align*\}\
+            \\left(\\begin\{array\}\{c\}\
+                  L - k_\{Drag\}\\cdot \{_B\}\{w\}_x\\\\\
+                  M - k_\{Drag\}\\cdot \{_B\}\{w\}_y\\\\\
+                  N - k_\{Drag\}\\cdot \{_B\}\{w\}_z\\\\\
+            \\end\{array\}\\right)&=\\sum \{_I\}\\boldsymbol\{\\tau\}_\{IB\}=\{_B\}\\boldsymbol\{I\}\\cdot \{_B\}\\boldsymbol\{\\alpha\}\\\\\
+        \\end\{align*\}\}\
+\
+\
+\\end\{itemize\}\
+\
+\
+\
+\\newpage\
+\\section*\{Appendix\}\
+\\subsection*\{Nomenclature\}\
+\\begin\{tabular\}\{lp\{15 cm\}\}\
+	$\\rho$           & Air density\\\\\
+	$v$              & velocity\\\\\
+	$A$              & Area \\\\\
+	$C_a$            & Lift coefficient \\\\\
+	$\\boldsymbol\{r\}$ & Position vector \\\\\
+	$\\boldsymbol\{v\}$ & Velocity vector \\\\\
+	$\\boldsymbol\{a\}$ & Acceleration vector \\\\\
+	$\\boldsymbol\{F\}$ & Force vector \\\\\
+	$\\boldsymbol\{\\tau\}$ & Torque/moment vector \\\\\
+	$\\boldsymbol\{I\}$ & Inertia tensor \\\\\
+	$\\boldsymbol\{\\omega\}$ & Angular rate vector \\\\\
+	$\\boldsymbol\{g\}$ & Gravity vector   \\\\\
+	$m$ &Mass \\\\\
+	$\{_I\}(.)$ & Variable expressed and related to an inertial frame \\\\	\
+	$\{_E\}(.)$ & Variable expressed and related to an earth fixed frame \\\\\
+	$\{_B\}(.)$ & Variable expressed and related to a body fixed frame \\\\\
+	$\{_G\}(.)$ & Variable expressed and related to a geodetic frame \\\\\
+	$\{_A\}(.)_\{AB\}$ & Radius vector expressed in A coordinate system from A to B \\\\\
+	$\{_I\}\\boldsymbol\{T\}_E$ & Transformation matrix that transforms a vector from frame $E$ into frame $I$\\\\\
+	$\{_E\}x_\{E\}$ & Unit vector of x-axis of \\\{E\\\} frame expressed in \\\{E\\\}  coordinate system ($= \\left[\\begin\{matrix\}\
+	1 & 0 & 0\
+	\\end\{matrix\}\\right]^T$) \\\\\
+	$\{_E\}y_\{E\}$ & Unit vector of y-axis of \\\{E\\\} frame expressed in \\\{E\\\}  coordinate system ($= \\left[\\begin\{matrix\}\
+	0 & 1 & 0\
+	\\end\{matrix\}\\right]^T$) \\\\\
+	$\{_E\}z_\{E\}$ & Unit vector of z-axis of \\\{E\\\} frame expressed in \\\{E\\\}  coordinate system ($= \\left[\\begin\{matrix\}\
+	0& 0 & 1\
+	\\end\{matrix\}\\right]^T$) \
+\\end\{tabular\}\
+\\newpage\
+\\subsection*\{Sketch\}\
+The earth fixed frame \\\{E\\\} is a rotating system. The axis of rotation is the z-axis and indicated through the double arrow in figure \\ref\{fig: relKin\}. \\\{I\\\} indicates the inertial frame and the body fixed frame is \\\{B\\\}.  Actually the \\\{E\\\} and \\\{I\\\} frame share the same origin. For visualisation purposes a little offset is depicted. The earth is simplified as a sphere.\
+\\begin\{figure\}[h]\
+	\\centering\
+	\\def\\svgwidth\{300pt\} \
+	\\input\{Sketch.pdf_tex\}\
+	\\caption\{Relative kinematics\}\
+	\\label\{fig: relKin\}\
+\\end\{figure\}\
+\
+\\end\{document\}\
+\
+}
